@@ -1,0 +1,20 @@
+version: "2.0"
+nlu:
+- intent: get_my_ticket
+  examples: |
+    - get my ticket [1234](ticket_id)
+    - show my ticket [1234](ticket_id)
+    - find ticket [1231231](ticket_id)
+
+- intent: faq/language
+  examples: |
+    - What language do you speak?
+    - Do you only handle english?
+
+- regex: ticket_id
+  examples: |
+    - [0-9]{1,9}
+- intent: create_ticket
+  examples: |
+    - create a new ticket
+    - new ticket please

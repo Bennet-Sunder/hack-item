@@ -1,0 +1,40 @@
+stories:
+- story: My story
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+rules:
+- rule: My rule
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+intents:
+- greet
+
+nlu:
+- intent: greet
+  examples: |
+   - hi
+   - hello
+- intent: bye
+  examples: |
+   - goodbye
+   - bye
+
+responses:
+  utter_greet:
+  - text: Hi
+
+language: en
+
+polices:
+   - name: RulePolicy
+
+pipeline:
+   - name: WhitespaceTokenizer
+   - name: CountVectorsFeaturizer
+   - name: DucklingHTTPExtractor
+   - name: DIETClassifier
+     epochs: 1
