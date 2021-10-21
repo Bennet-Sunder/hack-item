@@ -1,0 +1,20 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-ticket_id",
+      "2": "I-ticket_id",
+      "3": "L-ticket_id",
+      "4": "U-ticket_id",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-ticket_id": 1,
+      "I-ticket_id": 2,
+      "L-ticket_id": 3,
+      "U-ticket_id": 4,
+      "O": 0
+    },
+    "num_tags": 5
+  }
+]

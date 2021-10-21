@@ -17,8 +17,6 @@ sdist/
 var/
 env/
 venv/
-models/
-trained_models/
 *.egg-info/
 .installed.cfg
 *.egg
