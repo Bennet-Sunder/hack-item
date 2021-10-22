@@ -38,7 +38,28 @@ def add_intent():
   print(input_intent)
   data['nlu'].append(input_intent)
   yaml.dump(data, open(nlu_file, 'w'))
+  train_model
+  return Response({'success: true'}, status=200, mimetype='application/json')
 
+
+@app.route('/predict', methods = ['POST'])
+def predict():
+  print("query", request.json['text'])
+  intents = rasa.nlu.model.Interpreter.load(
+            RASA_MODEL_PATH).parse(request.json['text'])
+  print(intents)
+  data = { 'name': 'unknown', 'entities': [] }
+  if intents['intent']['confidence'] > 0.10:
+      data = { 'name': intents['intent']['name'], 'entities': intents['entities'] }
+  print(data)
+  return Response(json.dumps(data), status=200, mimetype='application/json')
+
+@app.route('/retrain', methods = ['POST'])
+def retrain():
+  train_model
+  return Response({'success: true'}, status=200, mimetype='application/json')
+
+def train_model():
   file_path = train_nlu(config=config_file,
                         nlu_data=nlu_file, output=out_dir)
   print("Created MODEL ")
@@ -55,19 +76,18 @@ def add_intent():
   tar = tarfile.open(file_path, "r:gz")
   tar.extractall(path=trained_model_dir)
   tar.close()
-  return Response({'success: true'}, status=200, mimetype='application/json')
 
 
-@app.route('/predict', methods = ['POST'])
-def predict():
-  print("query", request.json['text'])
-  intents = rasa.nlu.model.Interpreter.load(
-            RASA_MODEL_PATH).parse(request.json['text'])
-  print(intents)
-  if intents['intent']['confidence'] > 0.90:
-      data = { 'name': intents['intent']['name'], 'entities': intents['entities'] }
-  print(data)
-  return Response(json.dumps(data), status=200, mimetype='application/json')
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run(host='0.0.0.0', port=80)
+
+outputList = []
+for i,g in itertools.groupby(entities, key=operator.itemgetter("entity")):
+  print(list(g))
+
+
+for i,g in itertools.groupby(entities, key=operator.itemgetter("entity")):
+  print(list(g))
+
+outputList[0]
