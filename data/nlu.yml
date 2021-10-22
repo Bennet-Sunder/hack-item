@@ -1,15 +1,5 @@
 version: "2.0"
 nlu:
-- intent: get_my_ticket
-  examples: |
-    - get my ticket [1234](ticket_id)
-    - show my ticket [1234](ticket_id)
-    - find ticket [1231231](ticket_id)
-
-- intent: create_ticket
-  examples: |
-    - create a new ticket
-    - new ticket please
 
 - intent: unknown
   examples: |
@@ -20,17 +10,10 @@ nlu:
     - I need to catch [10:56](other_num) AM or [23:40](other_num) PM flight.
     - My IP address is [10.24.56.123](other_num)
 
-- intent: assign_ticket
-  examples: |
-    - Assign [1234](ticket_id) to [John](user_name)
-    - Give [1234](ticket_id) to [Smith](user_name)
-    - update [1234](ticket_id) to [Varun](user_name)
-    - let [Varun Dhawan](user_name) take care of [1234](ticket_id)
-
 - regex: ticket_id
   examples: |
     - [0-9]{1,9}
 
-- regex: user_name
+- regex: agent_name
   examples: |
     - [a-zA-Z'-]+
